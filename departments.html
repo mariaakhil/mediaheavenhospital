@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Departments &amp; Specialities - Medi Heaven Hospital, Aluva</title>
+<style>
+:root{
+  --navy:#0F2A5C;
+  --green:#2E9E4F;
+  --gold:#F2A900;
+  --white:#FFFFFF;
+  --grey:#F7F9FC;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--grey);color:var(--navy)}
+a{text-decoration:none;color:inherit}
+
+/* ---------- Top info bar ---------- */
+.topbar{background:var(--navy);color:var(--white);font-size:13px}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:8px 24px;max-width:1280px;margin:0 auto;flex-wrap:wrap}
+.topbar span,.topbar a{display:inline-flex;align-items:center;gap:6px}
+.topbar .right{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.topbar a:hover{color:var(--gold)}
+.topbar .sep{opacity:.4}
+
+/* ---------- Navbar ---------- */
+.navbar{position:sticky;top:0;z-index:100;background:var(--white);transition:box-shadow .3s}
+.navbar{box-shadow:0 0 0 rgba(15,42,92,0)}
+/* soft shadow once the page is scrolled (pure CSS, scroll-driven where supported) */
+@supports (animation-timeline:scroll()){
+  .navbar{animation:navshadow linear both;animation-timeline:scroll(root);animation-range:0 80px}
+  @keyframes navshadow{to{box-shadow:0 6px 24px rgba(15,42,92,.12)}}
+}
+@supports not (animation-timeline:scroll()){
+  .navbar{box-shadow:0 4px 18px rgba(15,42,92,.10)}
+}
+.nav-inner{max-width:1280px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative}
+
+/* Logo */
+.logo{display:flex;align-items:center;gap:12px}
+.logo img{height:56px;width:auto;display:block}
+
+/* Menu */
+.nav-right{display:flex;align-items:center;gap:32px}
+.menu{display:flex;list-style:none;gap:28px}
+.menu a{position:relative;display:block;padding:8px 0;font-size:16px;font-weight:600;color:var(--navy);transition:color .25s}
+.menu a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.menu a:hover{color:var(--green)}
+.menu a:hover::after{transform:scaleX(1)}
+.menu a.active{color:var(--gold)}
+.menu a.active::after{transform:scaleX(1)}
+
+.cta{display:inline-block;background:var(--green);color:var(--white);font-weight:600;font-size:15px;padding:12px 26px;border-radius:999px;border:2px solid var(--green);transition:background .25s,color .25s,border-color .25s,transform .25s;white-space:nowrap}
+.cta:hover{background:var(--gold);border-color:var(--gold);color:var(--navy);transform:translateY(-1px)}
+
+/* Hamburger (CSS-only checkbox) */
+.nav-toggle{display:none}
+.burger{display:none;cursor:pointer;width:44px;height:44px;border-radius:8px;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.burger span{display:block;width:24px;height:3px;background:var(--navy);border-radius:2px;transition:transform .3s,opacity .3s}
+.nav-toggle:checked ~ .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.nav-toggle:checked ~ .burger span:nth-child(2){opacity:0}
+.nav-toggle:checked ~ .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.nav-toggle:focus-visible ~ .burger{outline:2px solid var(--green)}
+
+/* ---------- Tablet ---------- */
+@media (max-width:1024px){
+  .nav-right{gap:20px}
+  .menu{gap:18px}
+  .menu a{font-size:15px}
+}
+@media (max-width:860px){
+  .menu{gap:14px}
+  .menu a{font-size:14px}
+  .cta{font-size:13px;padding:9px 16px}
+  .logo img{height:48px}
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width:767px){
+  .topbar .address{display:none}
+  .topbar .wrap{justify-content:center;padding:8px 16px}
+  .topbar .right{justify-content:center;gap:14px}
+
+  .nav-inner{padding:10px 16px}
+  .burger{display:flex}
+  .nav-right{
+    position:absolute;left:0;right:0;top:100%;
+    background:var(--white);flex-direction:column;align-items:stretch;gap:0;
+    padding:0 16px;max-height:0;overflow:hidden;
+    box-shadow:0 12px 24px rgba(15,42,92,.12);
+    transition:max-height .35s ease,padding .35s ease;
+  }
+  .nav-toggle:checked ~ .nav-right{max-height:420px;padding:8px 16px 20px}
+  .menu{flex-direction:column;gap:0}
+  .menu li{border-bottom:1px solid var(--grey)}
+  .menu a{font-size:16px;padding:14px 0}
+  .menu a::after{bottom:8px;width:40px}
+  .cta{display:block;text-align:center;margin-top:16px;padding:14px;font-size:16px}
+}
+@media (max-width:480px){
+  .logo img{height:38px}
+  .topbar{font-size:12px}
+}
+
+
+/* ======== Departments page ======== */
+.eyebrow{display:inline-flex;align-items:center;gap:12px;color:var(--green);font-weight:800;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.wrap{max-width:1280px;margin:0 auto}
+.btn{display:inline-block;font-weight:600;font-size:15px;padding:12px 26px;border-radius:999px;border:2px solid transparent;text-align:center;transition:background .25s,color .25s,border-color .25s,transform .25s}
+.btn:hover{transform:translateY(-3px)}
+.btn-green{background:var(--green);border-color:var(--green);color:var(--white)}
+.btn-green:hover{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.btn-gold{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.btn-gold:hover{background:var(--white);border-color:var(--white)}
+.btn-outline{background:transparent;border-color:var(--green);color:var(--green)}
+.btn-outline:hover{background:var(--green);color:var(--white)}
+a:focus-visible,.btn:focus-visible,.filter:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* hero */
+.page-hero{color:var(--white);background:linear-gradient(90deg,rgba(15,42,92,.96) 0%,rgba(15,42,92,.86) 55%,rgba(15,42,92,.65) 100%),url("hospital%20pics.jpg") center/cover no-repeat}
+.page-hero .wrap{padding:76px 24px}
+.crumbs{color:var(--gold);font-weight:700;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+.crumbs a:hover{text-decoration:underline}
+.page-hero h1{font-size:46px;line-height:1.15;font-weight:800;max-width:780px}
+.page-hero h2{margin-top:12px;font-size:22px;color:var(--gold);font-weight:700}
+.page-hero p{margin-top:16px;max-width:760px;font-size:17px;line-height:1.8;color:var(--grey)}
+
+/* filter + grid */
+.depts-page{background:var(--grey);padding:70px 24px 90px}
+.filters{display:flex;justify-content:center;gap:12px;margin:0 auto 44px;max-width:1280px}
+.filter{border:2px solid var(--navy);background:var(--white);color:var(--navy);font:600 15px "Segoe UI",Roboto,Arial,sans-serif;padding:10px 24px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:background .25s,color .25s,border-color .25s}
+.filter:hover{border-color:var(--green);color:var(--green)}
+.filter.active{background:var(--green);border-color:var(--green);color:var(--white)}
+.count{text-align:center;color:var(--navy);opacity:.75;font-weight:600;margin:-22px 0 30px}
+.dgrid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:stretch}
+.dcard{position:relative;display:flex;flex-direction:column;background:var(--white);border-radius:18px;border-top:4px solid var(--white);padding:34px 28px 28px;box-shadow:0 8px 26px rgba(15,42,92,.09);transition:transform .3s,border-color .3s,box-shadow .3s}
+.dcard[hidden]{display:none}
+.dcard:hover{transform:translateY(-8px);border-top-color:var(--gold);box-shadow:0 18px 38px rgba(15,42,92,.16)}
+.d-icon{width:68px;height:68px;border-radius:50%;background:var(--green);color:var(--white);display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:background .3s,color .3s}
+.d-icon svg{width:34px;height:34px}
+.dcard:hover .d-icon{background:var(--gold);color:var(--navy)}
+.dcard h3{color:var(--navy);font-size:20px;font-weight:800;margin-bottom:12px;line-height:1.3;padding-right:70px}
+.dcard p{color:var(--navy);opacity:.82;font-size:15px;line-height:1.75;margin-bottom:22px;flex:1}
+.badge{position:absolute;top:16px;right:16px;background:var(--gold);color:var(--navy);font-size:11px;font-weight:800;letter-spacing:.8px;padding:5px 11px;border-radius:999px}
+.d-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;border-top:1px solid var(--grey);padding-top:18px}
+.d-actions .btn{padding:9px 20px;font-size:14px}
+.d-call{color:var(--navy);font-weight:700;font-size:14px;transition:color .25s}
+.d-call:hover{color:var(--green);text-decoration:underline}
+
+/* bottom cta */
+.cta-bar{background:var(--navy);color:var(--white);text-align:center;padding:64px 24px;border-bottom:4px solid var(--gold)}
+.cta-bar h2{font-size:30px;line-height:1.35;max-width:860px;margin:0 auto 28px;font-weight:800}
+.cta-btns{display:flex;justify-content:center;flex-wrap:wrap;gap:14px}
+
+@media (max-width:1024px){
+  .page-hero h1{font-size:38px}
+  .page-hero .wrap{padding:60px 24px}
+  .depts-page{padding:56px 24px 70px}
+  .dgrid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .page-hero .wrap{padding:46px 16px}
+  .page-hero h1{font-size:26px}
+  .page-hero h2{font-size:18px}
+  .page-hero p{font-size:15.5px}
+  .depts-page{padding:40px 16px 56px}
+  .filters{justify-content:flex-start;overflow-x:auto;margin:0 -16px 30px;padding:4px 16px 8px;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .dgrid{grid-template-columns:1fr;gap:18px}
+  .dcard{padding:30px 22px 24px}
+  .d-actions .btn{width:100%}
+  .cta-bar{padding:46px 16px}
+  .cta-bar h2{font-size:22px}
+  .cta-btns .btn{width:100%}
+}
+/* ---------- Footer ---------- */
+.footer{background:var(--navy);color:var(--white);border-top:4px solid var(--gold)}
+.footer-main{max-width:1280px;margin:0 auto;padding:64px 24px 48px;display:grid;grid-template-columns:1.4fr 1fr 1.1fr 1.5fr;gap:44px}
+.f-logo{display:inline-block;background:var(--white);border-radius:12px;padding:10px 14px}
+.f-logo img{height:44px;width:auto;display:block}
+.f-brand p{margin:18px 0 22px;line-height:1.7;font-size:15px;color:var(--grey);opacity:.9}
+.f-social{display:flex;gap:10px}
+.f-social a{width:40px;height:40px;border-radius:50%;border:2px solid var(--white);display:flex;align-items:center;justify-content:center;transition:background .25s,border-color .25s,color .25s,transform .25s}
+.f-social svg{width:19px;height:19px}
+.f-social a:hover{background:var(--gold);border-color:var(--gold);color:var(--navy);transform:translateY(-3px)}
+.f-col h3{font-size:18px;margin-bottom:22px;padding-bottom:10px;position:relative}
+.f-col h3::after{content:"";position:absolute;left:0;bottom:0;width:36px;height:3px;background:var(--gold);border-radius:2px}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.f-col li a,.f-contact a:not(.btn){color:var(--grey);font-size:15px;transition:color .25s,padding-left .25s}
+.f-col nav li a:hover,.f-col li a:hover{color:var(--gold)}
+.f-col:not(.f-contact) li a:hover{padding-left:6px}
+.f-contact li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.6;color:var(--grey)}
+.f-ic{flex:none;width:34px;height:34px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:15px}
+.f-cta{margin-top:22px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.18);max-width:1280px;margin:0 auto;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--grey)}
+.to-top{color:var(--gold);font-weight:600}
+.to-top:hover{color:var(--white)}
+@media (max-width:1024px){
+  .footer-main{grid-template-columns:1fr 1fr;padding:54px 24px 40px}
+}
+@media (max-width:640px){
+  .footer-main{grid-template-columns:1fr;gap:34px;padding:44px 16px 32px}
+  .f-cta{width:100%}
+  .footer-bottom{flex-direction:column;text-align:center;padding:18px 16px}
+}
+</style>
+</head>
+<body id="top">
+
+<!-- Top info bar -->
+<div class="topbar">
+  <div class="wrap">
+    <span class="address">📍 Near Sri Krishna Temple, Bank Junction, Periyar Nagar, Aluva, Kerala - 683101</span>
+    <div class="right">
+      <a href="tel:04842623890">📞 0484-2623890</a>
+      <span class="sep">|</span>
+      <a href="tel:9048630016">9048630016</a>
+      <a href="mailto:mediheavenaluva@gmail.com">✉️ mediheavenaluva@gmail.com</a>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+<header class="navbar">
+  <nav class="nav-inner" aria-label="Main">
+    <a href="index.html" class="logo" aria-label="Medi Heaven Hospital">
+      <img src="logo.jpeg" alt="Medi Heaven Hospital logo">
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+    <label for="nav-toggle" class="burger"><span></span><span></span><span></span></label>
+
+    <div class="nav-right">
+      <ul class="menu">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="doctors.html">Our Doctors</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <a href="contact.html" class="cta">Book Appointment</a>
+    </div>
+  </nav>
+</header>
+<!-- 1. Page hero -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> &gt; Departments</div>
+    <h1>Our Departments &amp; Specialities</h1>
+    <h2>Comprehensive Care Across Specialities</h2>
+    <p>At MediHeaven Hospital, we bring together a range of medical and surgical specialities to provide comprehensive healthcare for individuals and families. Our focus is on quality treatment, personalised attention and compassionate care at every stage.</p>
+  </div>
+</section>
+
+<main class="depts-page">
+  <!-- 2. Filter -->
+  <div class="filters" id="filters" role="group" aria-label="Filter departments">
+    <button class="filter active" data-f="all">All</button>
+    <button class="filter" data-f="medical">Medical</button>
+    <button class="filter" data-f="surgical">Surgical</button>
+    <button class="filter" data-f="child">Child Care</button>
+    <button class="filter" data-f="women">Women Care</button>
+    <button class="filter" data-f="h24">24-Hour Services</button>
+  </div>
+  <p class="count" id="count" aria-live="polite"></p>
+
+  <!-- 3. Department cards -->
+  <div class="dgrid" id="dgrid">
+    <article class="dcard" data-cat="medical">
+      
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M5 3h2M13 3h2"/><path d="M10 13v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="11" r="2"/></svg></div>
+      <h3>General Medicine</h3>
+      <p>Our General Medicine department provides comprehensive care for a wide range of adult medical conditions. We focus on accurate diagnosis, effective treatment and preventive healthcare. From common illnesses to chronic medical conditions, we strive to support patients through every stage of their health journey.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="medical">
+      
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8c0-1 1-2 2-2h12c1 0 2 1 2 2v3c0 4-4 7-8 7s-8-3-8-7z"/><circle cx="12" cy="12" r="2.2"/><path d="M2 9h2M20 9h2"/></svg></div>
+      <h3>Anaesthesiology</h3>
+      <p>Our Anaesthesiology department ensures patient comfort and safety before, during and after surgical procedures. Our services include anaesthesia administration, perioperative assessment and pain management. Patient monitoring and safety remain our highest priorities.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="child">
+      
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="7.5"/><path d="M12 5.5c0-2 2-3 3.2-2"/><circle cx="9.3" cy="12.3" r=".6" fill="currentColor"/><circle cx="14.7" cy="12.3" r=".6" fill="currentColor"/><path d="M9.5 15.8c1.5 1.4 3.5 1.4 5 0"/></svg></div>
+      <h3>Neonatology</h3>
+      <p>Our Neonatology services focus on the specialised care of newborn babies, particularly premature and medically vulnerable infants. We emphasise early assessment, close monitoring and appropriate medical support. Our goal is to give every newborn the best possible start in life.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="child">
+      
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="6.5"/><circle cx="6.3" cy="7" r="2.5"/><circle cx="17.7" cy="7" r="2.5"/><circle cx="12" cy="15.5" r="2"/><circle cx="9.5" cy="11.8" r=".6" fill="currentColor"/><circle cx="14.5" cy="11.8" r=".6" fill="currentColor"/></svg></div>
+      <h3>Paediatrics</h3>
+      <p>Our Paediatrics department provides healthcare for infants, children and adolescents. From routine health assessments and immunisation guidance to the diagnosis and treatment of childhood illnesses, we focus on supporting healthy growth and development in a child-friendly environment.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="women">
+      
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path d="M12 14v8M9 18h6"/></svg></div>
+      <h3>Gynaecology</h3>
+      <p>Our Gynaecology department offers comprehensive healthcare for women at every stage of life. Services focus on menstrual health, reproductive health, pregnancy-related care and the diagnosis and management of various gynaecological conditions. We are committed to providing sensitive, personalised and compassionate care.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="surgical">
+      
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 16.5l9-9"/><circle cx="5.5" cy="14.5" r="2.2"/><circle cx="9.5" cy="18.5" r="2.2"/><circle cx="14.5" cy="5.5" r="2.2"/><circle cx="18.5" cy="9.5" r="2.2"/></svg></div>
+      <h3>Orthopaedics</h3>
+      <p>Our Orthopaedics department focuses on the diagnosis and treatment of conditions affecting bones, joints, muscles and the spine. We provide care for fractures, sports injuries, joint disorders and musculoskeletal problems, with an emphasis on restoring mobility and improving quality of life.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="medical">
+      
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 3c.6 4.5 1.5 5.4 6 6-4.5.6-5.4 1.5-6 6-.6-4.5-1.5-5.4-6-6 4.5-.6 5.4-1.5 6-6z"/><path d="M19 15c.3 2 .7 2.4 2.5 2.7-1.8.3-2.2.7-2.5 2.7-.3-2-.7-2.4-2.5-2.7 1.8-.3 2.2-.7 2.5-2.7z"/></svg></div>
+      <h3>Dermatology</h3>
+      <p>Our Dermatology department provides medical care for a wide range of skin, hair and nail conditions. From common skin infections and allergies to chronic dermatological concerns, we focus on accurate diagnosis and appropriate treatment to promote healthy skin.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="surgical child">
+      
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="7" r="3.5"/><path d="M2.5 21c0-4 2.5-6.5 5.5-6.5"/><path d="M12 17l8-8a1.6 1.6 0 0 0-2.3-2.3L10 14.5z"/><path d="M10 14.5l-.8 2.8 2.8-.8"/></svg></div>
+      <h3>Paediatric Surgery</h3>
+      <p>Our Paediatric Surgery department specialises in the surgical management of conditions affecting infants and children. We focus on careful evaluation, age-appropriate surgical care and attentive postoperative management, ensuring the comfort and well-being of both children and their families.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="medical">
+      
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3C5 3 3.5 4.8 3.5 7c0 2 1 3 1.5 5 .5 2.5.5 8 2.5 8 1.5 0 1.5-5 3-5h3c1.5 0 1.5 5 3 5 2 0 2-5.5 2.5-8 .5-2 1.5-3 1.5-5 0-2.2-1.5-4-3.5-4-1.5 0-2.5 1-4.5 1S8.5 3 7 3z"/></svg></div>
+      <h3>Dental Care</h3>
+      <p>Our Dental department is dedicated to maintaining and improving oral health through preventive, restorative and general dental care. We focus on early diagnosis, treatment of dental problems and patient education to promote healthy smiles and long-term oral hygiene.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="medical">
+      
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10a5 5 0 1 1 10 0c0 3-3 3.5-3 6.5a3 3 0 0 1-6 0"/><path d="M10 10a2 2 0 0 1 4 0"/></svg></div>
+      <h3>ENT (Ear, Nose &amp; Throat)</h3>
+      <p>Our ENT department provides diagnosis and treatment for conditions affecting the ears, nose, throat and related structures. From ear infections and hearing concerns to sinus and throat disorders, we aim to deliver effective treatment and improved quality of life.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="surgical">
+      
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="13" r="8"/><circle cx="8" cy="11.5" r=".6" fill="currentColor"/><circle cx="14" cy="11.5" r=".6" fill="currentColor"/><path d="M8 16c2 1.8 4 1.8 6 0"/><path d="M20 2v5M17.5 4.5h5"/></svg></div>
+      <h3>Plastic Surgery</h3>
+      <p>Our Plastic Surgery department focuses on reconstructive and aesthetic surgical care. Services may include the management of injuries, scars, congenital conditions and other concerns requiring reconstructive procedures. We aim to improve both function and appearance through individualised care.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="h24">
+      <span class="badge">24 HOURS</span>
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 17V6h11v11M13 9h4.5L22 13v4h-2M9 17h6"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/><path d="M7.5 8.5v4M5.5 10.5h4"/></svg></div>
+      <h3>24-Hour Casualty &amp; Emergency Care</h3>
+      <p>Our Casualty department provides round-the-clock emergency medical services for patients requiring immediate attention. Our team is committed to prompt assessment, timely intervention and stabilisation of emergency cases, ensuring medical assistance whenever it is needed.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="h24">
+      <span class="badge">24 HOURS</span>
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="rotate(-45 12 12)"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M12 8v8"/></g></svg></div>
+      <h3>24-Hour Pharmacy</h3>
+      <p>Our in-house pharmacy operates 24 hours a day to ensure convenient access to prescribed medications and essential medical supplies. We are committed to supporting patients with timely access to their medication needs, both during the day and at night.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="h24">
+      <span class="badge">24 HOURS</span>
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9.5" y="3" width="4.5" height="9" rx="1" transform="rotate(20 12 7.5)"/><path d="M5 21h14M8 17h6"/><path d="M15.5 13a5.5 5.5 0 0 1-3 7"/></svg></div>
+      <h3>24-Hour Laboratory Services</h3>
+      <p>Our laboratory provides round-the-clock diagnostic support to assist doctors in accurate and timely clinical decision-making. With a focus on reliable testing and efficient reporting, we support patient care across outpatient, inpatient and emergency services.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+    <article class="dcard" data-cat="child">
+      <span class="badge">NEW</span>
+      <div class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4a2 2 0 1 1 4 0v2h4v4h-2a2 2 0 1 0 0 4h2v4h-4v-2a2 2 0 1 0-4 0v2H6v-4H4a2 2 0 1 1 0-4h2V6h4z"/></svg></div>
+      <h3>Developmental Pediatrics</h3>
+      <p>The Department of Developmental Pediatrics focuses on the early identification, assessment, diagnosis, and management of developmental delays and disorders in children. It provides comprehensive care for children with concerns related to speech and language, motor skills, learning, behaviour, social interaction, and overall development. The department supports children with conditions such as autism spectrum disorder, ADHD, and other neurodevelopmental difficulties, while guiding parents through early intervention, developmental support, and individualized care plans to help every child reach their fullest potential.</p>
+      <div class="d-actions">
+        <a href="contact.html" class="btn btn-outline">Book Appointment</a>
+        <a href="tel:04842623890" class="d-call">Call: 0484-2623890</a>
+      </div>
+    </article>
+  </div>
+</main>
+
+<!-- 4. Bottom CTA -->
+<section class="cta-bar">
+  <h2>MediHeaven Hospital, Aluva - Rooted in Trust. Driven by Care. Committed to Your Health.</h2>
+  <div class="cta-btns">
+    <a href="contact.html" class="btn btn-green">Book Appointment</a>
+    <a href="tel:9048630016" class="btn btn-gold">Call Now: 9048630016</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-main">
+    <!-- Brand -->
+    <div class="f-col f-brand">
+      <a href="index.html" class="f-logo" aria-label="Medi Heaven Hospital"><img src="logo.jpeg" alt="Medi Heaven Hospital logo"></a>
+      <p>Quality, affordable and compassionate healthcare for the community in Aluva since 2016. Legacy of KMK Hospital.</p>
+      <div class="f-social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6.5c0-.7.3-1 1-1h2V2h-3c-3 0-4.5 1.8-4.5 4.3V8H7v3.5h2.5V22H14V11.5h2.8L17.3 8z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.200 5 12 5 12 5s-6.200 0-7.800.4A2.500 2.500 0 0 0 2.400 7.200C2 8.800 2 12 2 12s0 3.200.4 4.800a2.500 2.500 0 0 0 1.800 1.800C5.800 19 12 19 12 19s6.200 0 7.800-.4a2.500 2.500 0 0 0 1.800-1.800c.4-1.600.4-4.800.4-4.800s0-3.200-.4-4.800zM10 15V9l5.200 3z"/></svg></a>
+        <a href="https://wa.me/919048630016" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.6-4.800A8.500 8.500 0 1 1 8 19.500z"/><path d="M9 9.500c0 3 2.500 5.500 5.500 5.500l1-1.500-2-1-.8.800c-1-.4-1.800-1.200-2.200-2.200l.8-.8-1-2z"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Quick links -->
+    <nav class="f-col" aria-label="Quick links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="doctors.html">Our Doctors</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <!-- Departments -->
+    <nav class="f-col" aria-label="Departments">
+      <h3>Departments</h3>
+      <ul>
+        <li><a href="departments.html">General Medicine</a></li>
+        <li><a href="departments.html">Paediatrics &amp; Neonatology</a></li>
+        <li><a href="departments.html">Gynaecology</a></li>
+        <li><a href="departments.html">Orthopaedics</a></li>
+        <li><a href="departments.html">24-Hour Emergency</a></li>
+        <li><a href="departments.html">24-Hour Pharmacy &amp; Lab</a></li>
+      </ul>
+    </nav>
+
+    <!-- Contact -->
+    <div class="f-col f-contact">
+      <h3>Contact Us</h3>
+      <ul>
+        <li><span class="f-ic">📍</span><span>Near Sri Krishna Temple, Bank Junction, Periyar Nagar, Aluva, Kerala - 683101</span></li>
+        <li><span class="f-ic">📞</span><span><a href="tel:04842623890">0484-2623890</a> | <a href="tel:9048630016">9048630016</a></span></li>
+        <li><span class="f-ic">✉️</span><a href="mailto:mediheavenaluva@gmail.com">mediheavenaluva@gmail.com</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-green f-cta">Book Appointment</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 MediHeaven Hospital, Aluva. All rights reserved.</p>
+    <a href="#top" class="to-top" aria-label="Back to top">Back to top &uarr;</a>
+  </div>
+</footer>
+<script>
+/* Department filter: a card can belong to several categories (data-cat is a space-separated list) */
+(function(){
+  var btns=[].slice.call(document.querySelectorAll('.filter')),
+      cards=[].slice.call(document.querySelectorAll('.dcard')),
+      count=document.getElementById('count');
+  function apply(f){
+    var n=0;
+    cards.forEach(function(c){
+      var show=f==='all'||c.dataset.cat.split(' ').indexOf(f)>-1;
+      c.hidden=!show; if(show)n++;
+    });
+    count.textContent='Showing '+n+' of '+cards.length+' departments';
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    btns.forEach(function(x){x.classList.toggle('active',x===b);});
+    apply(b.dataset.f);
+  });});
+  apply('all');
+})();
+</script>
+</body>
+</html>
