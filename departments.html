@@ -129,7 +129,7 @@ a:focus-visible,.btn:focus-visible,.filter:focus-visible{outline:3px solid var(-
 
 /* filter + grid */
 .depts-page{background:var(--grey);padding:70px 24px 90px}
-.filters{display:flex;justify-content:center;gap:12px;margin:0 auto 44px;max-width:1280px}
+.filters{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:0 auto 44px;max-width:1280px}
 .filter{border:2px solid var(--navy);background:var(--white);color:var(--navy);font:600 15px "Segoe UI",Roboto,Arial,sans-serif;padding:10px 24px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:background .25s,color .25s,border-color .25s}
 .filter:hover{border-color:var(--green);color:var(--green)}
 .filter.active{background:var(--green);border-color:var(--green);color:var(--white)}
@@ -166,7 +166,7 @@ a:focus-visible,.btn:focus-visible,.filter:focus-visible{outline:3px solid var(-
   .page-hero h2{font-size:18px}
   .page-hero p{font-size:15.5px}
   .depts-page{padding:40px 16px 56px}
-  .filters{justify-content:flex-start;overflow-x:auto;margin:0 -16px 30px;padding:4px 16px 8px;scrollbar-width:none}
+  .filters{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;margin:0 -16px 30px;padding:4px 16px 8px;scrollbar-width:none}
   .filters::-webkit-scrollbar{display:none}
   .dgrid{grid-template-columns:1fr;gap:18px}
   .dcard{padding:30px 22px 24px}

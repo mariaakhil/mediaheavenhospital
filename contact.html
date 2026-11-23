@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Us - Medi Heaven Hospital, Aluva</title>
+<meta name="description" content="Contact Medi Heaven Hospital, Aluva: call, WhatsApp, email or book an appointment. 24-hour emergency, pharmacy and laboratory.">
+<style>
+:root{
+  --navy:#0F2A5C;
+  --green:#2E9E4F;
+  --gold:#F2A900;
+  --white:#FFFFFF;
+  --grey:#F7F9FC;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--grey);color:var(--navy)}
+a{text-decoration:none;color:inherit}
+
+/* ---------- Top info bar ---------- */
+.topbar{background:var(--navy);color:var(--white);font-size:13px}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:8px 24px;max-width:1280px;margin:0 auto;flex-wrap:wrap}
+.topbar span,.topbar a{display:inline-flex;align-items:center;gap:6px}
+.topbar .right{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.topbar a:hover{color:var(--gold)}
+.topbar .sep{opacity:.4}
+
+/* ---------- Navbar ---------- */
+.navbar{position:sticky;top:0;z-index:100;background:var(--white);transition:box-shadow .3s}
+.navbar{box-shadow:0 0 0 rgba(15,42,92,0)}
+/* soft shadow once the page is scrolled (pure CSS, scroll-driven where supported) */
+@supports (animation-timeline:scroll()){
+  .navbar{animation:navshadow linear both;animation-timeline:scroll(root);animation-range:0 80px}
+  @keyframes navshadow{to{box-shadow:0 6px 24px rgba(15,42,92,.12)}}
+}
+@supports not (animation-timeline:scroll()){
+  .navbar{box-shadow:0 4px 18px rgba(15,42,92,.10)}
+}
+.nav-inner{max-width:1280px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative}
+
+/* Logo */
+.logo{display:flex;align-items:center;gap:12px}
+.logo img{height:56px;width:auto;display:block}
+
+/* Menu */
+.nav-right{display:flex;align-items:center;gap:32px}
+.menu{display:flex;list-style:none;gap:28px}
+.menu a{position:relative;display:block;padding:8px 0;font-size:16px;font-weight:600;color:var(--navy);transition:color .25s}
+.menu a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.menu a:hover{color:var(--green)}
+.menu a:hover::after{transform:scaleX(1)}
+.menu a.active{color:var(--gold)}
+.menu a.active::after{transform:scaleX(1)}
+
+.cta{display:inline-block;background:var(--green);color:var(--white);font-weight:600;font-size:15px;padding:12px 26px;border-radius:999px;border:2px solid var(--green);transition:background .25s,color .25s,border-color .25s,transform .25s;white-space:nowrap}
+.cta:hover{background:var(--gold);border-color:var(--gold);color:var(--navy);transform:translateY(-1px)}
+
+/* Hamburger (CSS-only checkbox) */
+.nav-toggle{display:none}
+.burger{display:none;cursor:pointer;width:44px;height:44px;border-radius:8px;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.burger span{display:block;width:24px;height:3px;background:var(--navy);border-radius:2px;transition:transform .3s,opacity .3s}
+.nav-toggle:checked ~ .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.nav-toggle:checked ~ .burger span:nth-child(2){opacity:0}
+.nav-toggle:checked ~ .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.nav-toggle:focus-visible ~ .burger{outline:2px solid var(--green)}
+
+/* ---------- Tablet ---------- */
+@media (max-width:1024px){
+  .nav-right{gap:20px}
+  .menu{gap:18px}
+  .menu a{font-size:15px}
+}
+@media (max-width:860px){
+  .menu{gap:14px}
+  .menu a{font-size:14px}
+  .cta{font-size:13px;padding:9px 16px}
+  .logo img{height:48px}
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width:767px){
+  .topbar .address{display:none}
+  .topbar .wrap{justify-content:center;padding:8px 16px}
+  .topbar .right{justify-content:center;gap:14px}
+
+  .nav-inner{padding:10px 16px}
+  .burger{display:flex}
+  .nav-right{
+    position:absolute;left:0;right:0;top:100%;
+    background:var(--white);flex-direction:column;align-items:stretch;gap:0;
+    padding:0 16px;max-height:0;overflow:hidden;
+    box-shadow:0 12px 24px rgba(15,42,92,.12);
+    transition:max-height .35s ease,padding .35s ease;
+  }
+  .nav-toggle:checked ~ .nav-right{max-height:420px;padding:8px 16px 20px}
+  .menu{flex-direction:column;gap:0}
+  .menu li{border-bottom:1px solid var(--grey)}
+  .menu a{font-size:16px;padding:14px 0}
+  .menu a::after{bottom:8px;width:40px}
+  .cta{display:block;text-align:center;margin-top:16px;padding:14px;font-size:16px}
+}
+@media (max-width:480px){
+  .logo img{height:38px}
+  .topbar{font-size:12px}
+}
+
+
+/* ======== Contact page ======== */
+.wrap{max-width:1280px;margin:0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;color:var(--green);font-weight:800;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:15px;padding:13px 28px;border-radius:999px;border:2px solid transparent;text-align:center;cursor:pointer;font-family:inherit;transition:background .25s,color .25s,border-color .25s,transform .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-3px)}
+.btn-green{background:var(--green);border-color:var(--green);color:var(--white)}
+.btn-green:hover{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.btn-white{background:var(--white);border-color:var(--white);color:var(--navy)}
+.btn-white:hover{background:var(--gold);border-color:var(--gold)}
+.btn-ghost{border-color:rgba(255,255,255,.6);color:var(--white)}
+.btn-ghost:hover{background:var(--white);color:var(--navy)}
+a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.ic{width:20px;height:20px;flex:none}
+
+/* hero */
+.c-hero{position:relative;color:var(--white);text-align:center;background:linear-gradient(180deg,rgba(15,42,92,.88),rgba(15,42,92,.78)),url("hospital%20pics.jpg") center/cover no-repeat;padding:80px 24px 150px}
+.crumbs{color:var(--gold);font-weight:700;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+.crumbs a:hover{text-decoration:underline}
+.c-hero h1{font-size:clamp(32px,5vw,54px);line-height:1.15;font-weight:800;max-width:780px;margin:0 auto}
+.c-hero h1 em{font-style:normal;color:var(--gold)}
+.c-hero p{margin:16px auto 28px;max-width:600px;font-size:clamp(16px,2vw,19px);line-height:1.6;color:var(--grey)}
+.hero-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+
+/* info cards overlapping hero */
+.info{position:relative;z-index:2;margin-top:-90px;padding:0 24px}
+.info-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.i-card{background:var(--white);border-radius:20px;padding:28px 24px;box-shadow:0 14px 40px rgba(15,42,92,.14);border-bottom:4px solid var(--gold);transition:transform .3s,box-shadow .3s,border-color .3s;display:flex;flex-direction:column;gap:6px}
+.i-card:hover{transform:translateY(-8px);border-color:var(--green);box-shadow:0 22px 48px rgba(15,42,92,.2)}
+.i-ico{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--green),#25b35d);color:var(--white);display:flex;align-items:center;justify-content:center;margin-bottom:12px;box-shadow:0 8px 18px rgba(46,158,79,.35)}
+.i-ico svg{width:26px;height:26px}
+.i-card small{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--green)}
+.i-card strong,.i-card a{font-size:17px;line-height:1.5;color:var(--navy);font-weight:700;word-break:break-word}
+.i-card a:hover{color:var(--green)}
+.i-card span{font-size:14px;line-height:1.5;opacity:.75}
+
+/* form + side */
+.main-sec{padding:90px 24px}
+.split{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.25fr 1fr;gap:36px;align-items:start}
+.form-card{background:var(--white);border-radius:24px;padding:clamp(24px,4vw,44px);box-shadow:0 14px 40px rgba(15,42,92,.1)}
+.form-card h2,.map-head h2{font-size:clamp(26px,3.4vw,36px);line-height:1.2;font-weight:800;margin:10px 0 10px}
+.form-card>p{opacity:.8;line-height:1.7;margin-bottom:26px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:14px;font-weight:700}
+.field label i{color:#d33;font-style:normal}
+.field input,.field select,.field textarea{font:inherit;font-size:15px;color:var(--navy);background:var(--grey);border:2px solid transparent;border-radius:14px;padding:14px 16px;width:100%;transition:border-color .25s,background .25s,box-shadow .25s}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;background:var(--white);border-color:var(--green);box-shadow:0 0 0 4px rgba(46,158,79,.15)}
+.field input:user-invalid,.field select:user-invalid,.field textarea:user-invalid{border-color:#d33}
+.form-note{font-size:13px;opacity:.7;margin-top:14px;line-height:1.6}
+.submit{width:100%;margin-top:6px;padding:16px;font-size:16px}
+.f-ok{display:none;margin-top:14px;padding:14px 16px;border-radius:12px;background:rgba(46,158,79,.12);color:var(--navy);font-weight:600}
+.f-ok.show{display:block}
+
+.side{display:flex;flex-direction:column;gap:24px}
+.s-card{border-radius:24px;padding:32px 28px;color:var(--white)}
+.s-emerg{background:linear-gradient(135deg,var(--navy),#16397a);position:relative;overflow:hidden}
+.s-emerg::after{content:"";position:absolute;right:-50px;top:-50px;width:180px;height:180px;border-radius:50%;background:rgba(242,169,0,.18)}
+.s-emerg .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:800;font-size:12px;letter-spacing:1px;padding:5px 12px;border-radius:999px}
+.s-emerg h3{font-size:24px;margin:14px 0 8px;position:relative}
+.s-emerg p{line-height:1.7;color:var(--grey);margin-bottom:20px;position:relative}
+.s-emerg .btn{position:relative}
+.s-list{background:var(--white);color:var(--navy);box-shadow:0 14px 40px rgba(15,42,92,.1)}
+.s-list h3{font-size:20px;margin-bottom:6px}
+.s-list ul{list-style:none;margin-top:12px}
+.s-list li{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--grey);font-weight:600;font-size:15px}
+.s-list li:last-child{border:0}
+.s-list li svg{width:20px;height:20px;color:var(--green);flex:none}
+.s-list li span{margin-left:auto;font-size:13px;font-weight:700;color:var(--green);background:rgba(46,158,79,.12);padding:4px 10px;border-radius:999px}
+.s-social{background:var(--green);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.s-social b{font-size:18px}
+
+/* map */
+.map-sec{padding:0 24px 90px}
+.map-head{text-align:center;max-width:680px;margin:0 auto 36px}
+.map-head p{opacity:.8;line-height:1.7}
+.map-box{max-width:1280px;margin:0 auto;border-radius:28px;overflow:hidden;box-shadow:0 14px 40px rgba(15,42,92,.14);border:6px solid var(--white);position:relative;background:var(--white)}
+.map-box iframe{display:block;width:100%;height:440px;border:0}
+.map-pin{position:absolute;left:20px;top:20px;background:var(--white);border-radius:16px;padding:16px 20px;box-shadow:0 10px 28px rgba(15,42,92,.22);max-width:300px}
+.map-pin b{display:block;margin-bottom:4px}
+.map-pin span{font-size:14px;line-height:1.5;opacity:.8;display:block;margin-bottom:10px}
+.map-pin a{color:var(--green);font-weight:700;font-size:14px}
+.map-pin a:hover{color:var(--gold)}
+
+.cta-bar{background:linear-gradient(135deg,var(--green),#237f3e);color:var(--white);text-align:center;padding:60px 24px}
+.cta-bar h2{font-size:clamp(22px,3.2vw,32px);max-width:780px;margin:0 auto 24px;line-height:1.3}
+
+@media (max-width:1024px){
+  .info-grid{grid-template-columns:repeat(2,1fr)}
+  .split{grid-template-columns:1fr}
+  .main-sec{padding:70px 24px}
+}
+@media (max-width:640px){
+  .c-hero{padding:56px 16px 120px}
+  .info{padding:0 16px;margin-top:-70px}
+  .info-grid{grid-template-columns:1fr;gap:14px}
+  .i-card{padding:22px}
+  .main-sec{padding:50px 16px}
+  .fgrid{grid-template-columns:1fr}
+  .hero-btns .btn{width:100%}
+  .s-card{padding:26px 22px}
+  .map-sec{padding:0 16px 60px}
+  .map-box iframe{height:340px}
+  .map-pin{position:static;max-width:none;border-radius:0;box-shadow:none;border-top:1px solid var(--grey)}
+}
+
+.footer{background:var(--navy);color:var(--white);border-top:4px solid var(--gold)}
+.footer-main{max-width:1280px;margin:0 auto;padding:64px 24px 48px;display:grid;grid-template-columns:1.4fr 1fr 1.1fr 1.5fr;gap:44px}
+.f-logo{display:inline-block;background:var(--white);border-radius:12px;padding:10px 14px}
+.f-logo img{height:44px;width:auto;display:block}
+.f-brand p{margin:18px 0 22px;line-height:1.7;font-size:15px;color:var(--grey);opacity:.9}
+.f-social{display:flex;gap:10px}
+.f-social a{width:40px;height:40px;border-radius:50%;border:2px solid var(--white);display:flex;align-items:center;justify-content:center;transition:background .25s,border-color .25s,color .25s,transform .25s}
+.f-social svg{width:19px;height:19px}
+.f-social a:hover{background:var(--gold);border-color:var(--gold);color:var(--navy);transform:translateY(-3px)}
+.f-col h3{font-size:18px;margin-bottom:22px;padding-bottom:10px;position:relative}
+.f-col h3::after{content:"";position:absolute;left:0;bottom:0;width:36px;height:3px;background:var(--gold);border-radius:2px}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.f-col li a,.f-contact a:not(.btn){color:var(--grey);font-size:15px;transition:color .25s,padding-left .25s}
+.f-col nav li a:hover,.f-col li a:hover{color:var(--gold)}
+.f-col:not(.f-contact) li a:hover{padding-left:6px}
+.f-contact li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.6;color:var(--grey)}
+.f-ic{flex:none;width:34px;height:34px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:15px}
+.f-cta{margin-top:22px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.18);max-width:1280px;margin:0 auto;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--grey)}
+.to-top{color:var(--gold);font-weight:600}
+.to-top:hover{color:var(--white)}
+@media (max-width:1024px){
+  .footer-main{grid-template-columns:1fr 1fr;padding:54px 24px 40px}
+}
+@media (max-width:640px){
+  .footer-main{grid-template-columns:1fr;gap:34px;padding:44px 16px 32px}
+  .f-cta{width:100%}
+  .footer-bottom{flex-direction:column;text-align:center;padding:18px 16px}
+}
+</style>
+</head>
+<body id="top">
+
+<!-- Top info bar -->
+<div class="topbar">
+  <div class="wrap">
+    <span class="address">📍 Near Sri Krishna Temple, Bank Junction, Periyar Nagar, Aluva, Kerala - 683101</span>
+    <div class="right">
+      <a href="tel:04842623890">📞 0484-2623890</a>
+      <span class="sep">|</span>
+      <a href="tel:9048630016">9048630016</a>
+      <a href="mailto:mediheavenaluva@gmail.com">✉️ mediheavenaluva@gmail.com</a>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+<header class="navbar">
+  <nav class="nav-inner" aria-label="Main">
+    <a href="index.html" class="logo" aria-label="Medi Heaven Hospital">
+      <img src="logo.jpeg" alt="Medi Heaven Hospital logo">
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+    <label for="nav-toggle" class="burger"><span></span><span></span><span></span></label>
+
+    <div class="nav-right">
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="doctors.html">Our Doctors</a></li>
+        <li><a href="contact.html" class="active">Contact Us</a></li>
+      </ul>
+      <a href="contact.html" class="cta">Book Appointment</a>
+    </div>
+  </nav>
+</header>
+
+<section class="c-hero">
+  <div class="crumbs"><a href="index.html">Home</a> &gt; Contact Us</div>
+  <h1>We're Here to <em>Help</em> You, Any Time</h1>
+  <p>Book an appointment, ask a question or reach our 24-hour emergency team. We reply as quickly as we can.</p>
+  <div class="hero-btns">
+    <a href="tel:04842623890" class="btn btn-green"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg> Call Now</a>
+    <a href="https://wa.me/919048630016" class="btn btn-ghost" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-.8.8c-1-.4-1.8-1.2-2.2-2.2l.8-.8-1-2z"/></svg> WhatsApp Us</a>
+  </div>
+</section>
+
+<main>
+<section class="info" aria-label="Contact details">
+  <div class="info-grid">
+    <div class="i-card"><div class="i-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div><small>Call us</small><a href="tel:04842623890">0484-2623890</a><a href="tel:9048630016">9048630016</a></div>
+    <div class="i-card"><div class="i-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><small>Email us</small><a href="mailto:mediheavenaluva@gmail.com">mediheavenaluva@gmail.com</a><span>We reply to every message.</span></div>
+    <div class="i-card"><div class="i-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><small>Visit us</small><strong>Near Sri Krishna Temple, Bank Junction, Periyar Nagar, Aluva, Kerala - 683101</strong></div>
+    <div class="i-card"><div class="i-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><small>Open 24 hours</small><strong>Emergency, Pharmacy &amp; Laboratory</strong><span>Round-the-clock care, every day.</span></div>
+  </div>
+</section>
+
+<section class="main-sec">
+  <div class="split">
+    <div class="form-card">
+      <span class="eyebrow">Book an appointment</span>
+      <h2>Send Us a Message</h2>
+      <p>Fill in the form and your request will open in WhatsApp, ready to send to our reception team.</p>
+      <form id="cform" novalidate>
+        <div class="fgrid">
+          <div class="field"><label for="name">Full name <i>*</i></label><input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name"></div>
+          <div class="field"><label for="phone">Phone <i>*</i></label><input id="phone" name="phone" type="tel" autocomplete="tel" required pattern="[0-9+\s\-]{8,15}" placeholder="e.g. 9048630016"></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+          <div class="field"><label for="date">Preferred date</label><input id="date" name="date" type="date"></div>
+          <div class="field full"><label for="dept">Department</label><select id="dept" name="dept"><option value="">Select a department</option><option>General Medicine</option><option>Anaesthesiology</option><option>Neonatology</option><option>Paediatrics</option><option>Gynaecology</option><option>Orthopaedics</option><option>Dermatology</option><option>Paediatric Surgery</option><option>Dental Care</option><option>ENT (Ear, Nose &amp; Throat)</option><option>Plastic Surgery</option><option>24-Hour Casualty &amp; Emergency Care</option><option>24-Hour Pharmacy</option><option>24-Hour Laboratory Services</option><option>Developmental Pediatrics</option></select></div>
+          <div class="field full"><label for="msg">Message <i>*</i></label><textarea id="msg" name="msg" required placeholder="How can we help you?"></textarea></div>
+        </div>
+        <button type="submit" class="btn btn-green submit">Send via WhatsApp</button>
+        <p class="f-ok" id="fok" role="status">Thank you! Please press Send in WhatsApp to complete your request.</p>
+        <p class="form-note">For emergencies please call 0484-2623890 directly instead of using this form.</p>
+      </form>
+    </div>
+
+    <aside class="side">
+      <div class="s-card s-emerg">
+        <span class="tag">24 / 7</span>
+        <h3>Medical Emergency?</h3>
+        <p>Our casualty and emergency team is available round the clock. Do not wait &mdash; call us immediately.</p>
+        <a href="tel:04842623890" class="btn btn-white"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg> 0484-2623890</a>
+      </div>
+      <div class="s-card s-list">
+        <h3>Available Around the Clock</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 17V6h11v11M13 9h4.5L22 13v4h-2M9 17h6"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg>Casualty &amp; Emergency<span>24 hrs</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="rotate(-45 12 12)"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M12 8v8"/></g></svg>Pharmacy<span>24 hrs</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3h4v8l4 8a2 2 0 0 1-2 3H8a2 2 0 0 1-2-3l4-8z"/></svg>Laboratory<span>24 hrs</span></li>
+        </ul>
+      </div>
+      <div class="s-card s-social">
+        <b>Follow &amp; message us</b>
+        <div class="f-social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6.5c0-.7.3-1 1-1h2V2h-3c-3 0-4.5 1.8-4.5 4.3V8H7v3.5h2.5V22H14V11.5h2.8L17.3 8z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://wa.me/919048630016" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-.8.8c-1-.4-1.8-1.2-2.2-2.2l.8-.8-1-2z"/></svg></a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="map-sec">
+  <div class="map-head"><span class="eyebrow">Find us</span><h2>Visit MediHeaven Hospital</h2><p>Located near Sri Krishna Temple, Bank Junction, in the heart of Aluva.</p></div>
+  <div class="map-box">
+    <iframe title="MediHeaven Hospital location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Medi+Heaven+Hospital+Aluva+Kerala&amp;output=embed"></iframe>
+    <div class="map-pin"><b>MediHeaven Hospital</b><span>Near Sri Krishna Temple, Bank Junction, Periyar Nagar, Aluva - 683101</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Medi+Heaven+Hospital+Aluva+Kerala" target="_blank" rel="noopener">Get directions &rarr;</a></div>
+  </div>
+</section>
+
+<section class="cta-bar">
+  <h2>Your Health, Our Priority. Reach Out Today.</h2>
+  <a href="tel:04842623890" class="btn btn-white">Call 0484-2623890</a>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-main">
+    <!-- Brand -->
+    <div class="f-col f-brand">
+      <a href="index.html" class="f-logo" aria-label="Medi Heaven Hospital"><img src="logo.jpeg" alt="Medi Heaven Hospital logo"></a>
+      <p>Quality, affordable and compassionate healthcare for the community in Aluva since 2016. Legacy of KMK Hospital.</p>
+      <div class="f-social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6.5c0-.7.3-1 1-1h2V2h-3c-3 0-4.5 1.8-4.5 4.3V8H7v3.5h2.5V22H14V11.5h2.8L17.3 8z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.200 5 12 5 12 5s-6.200 0-7.800.4A2.500 2.500 0 0 0 2.400 7.200C2 8.800 2 12 2 12s0 3.200.4 4.800a2.500 2.500 0 0 0 1.800 1.800C5.800 19 12 19 12 19s6.200 0 7.800-.4a2.500 2.500 0 0 0 1.800-1.800c.4-1.600.4-4.800.4-4.800s0-3.200-.4-4.800zM10 15V9l5.200 3z"/></svg></a>
+        <a href="https://wa.me/919048630016" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.6-4.800A8.500 8.500 0 1 1 8 19.500z"/><path d="M9 9.500c0 3 2.500 5.500 5.500 5.500l1-1.500-2-1-.8.800c-1-.4-1.800-1.200-2.200-2.200l.8-.8-1-2z"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Quick links -->
+    <nav class="f-col" aria-label="Quick links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="doctors.html">Our Doctors</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <!-- Departments -->
+    <nav class="f-col" aria-label="Departments">
+      <h3>Departments</h3>
+      <ul>
+        <li><a href="#departments">General Medicine</a></li>
+        <li><a href="#departments">Paediatrics &amp; Neonatology</a></li>
+        <li><a href="#departments">Gynaecology</a></li>
+        <li><a href="#departments">Orthopaedics</a></li>
+        <li><a href="#departments">24-Hour Emergency</a></li>
+        <li><a href="#departments">24-Hour Pharmacy &amp; Lab</a></li>
+      </ul>
+    </nav>
+
+    <!-- Contact -->
+    <div class="f-col f-contact">
+      <h3>Contact Us</h3>
+      <ul>
+        <li><span class="f-ic">📍</span><span>Near Sri Krishna Temple, Bank Junction, Periyar Nagar, Aluva, Kerala - 683101</span></li>
+        <li><span class="f-ic">📞</span><span><a href="tel:04842623890">0484-2623890</a> | <a href="tel:9048630016">9048630016</a></span></li>
+        <li><span class="f-ic">✉️</span><a href="mailto:mediheavenaluva@gmail.com">mediheavenaluva@gmail.com</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-green f-cta">Book Appointment</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 MediHeaven Hospital, Aluva. All rights reserved.</p>
+    <a href="#top" class="to-top" aria-label="Back to top">Back to top &uarr;</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var f=document.getElementById('cform'),ok=document.getElementById('fok'),d=document.getElementById('date');
+  try{d.min=new Date().toISOString().slice(0,10);}catch(e){}
+  try{
+    var P=new URLSearchParams(location.search),doc=P.get('doctor'),dp=P.get('dept');
+    if(dp){[].forEach.call(f.elements.dept.options,function(o){if(o.text.toLowerCase().replace(/&amp;/g,'&').indexOf(dp.toLowerCase())>-1&&!f.elements.dept.value)f.elements.dept.value=o.value||o.text;});}
+    if(doc&&!/^doctor name$/i.test(doc))f.elements.msg.value='I would like to book an appointment with '+doc+'.';
+  }catch(e){}
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!f.checkValidity()){f.reportValidity();return;}
+    var v=function(n){return f.elements[n].value.trim();},q=encodeURIComponent;
+    var dept=f.elements.dept.options[f.elements.dept.selectedIndex].text;
+    var t='Hello MediHeaven Hospital,\n\n*Appointment / enquiry*\nName: '+v('name')+'\nPhone: '+v('phone')
+      +(v('email')?'\nEmail: '+v('email'):'')
+      +(v('dept')?'\nDepartment: '+dept:'')
+      +(v('date')?'\nPreferred date: '+v('date'):'')
+      +'\nMessage: '+v('msg');
+    ok.classList.add('show');
+    window.open('https://wa.me/919048630016?text='+q(t),'_blank','noopener');
+    f.reset();
+  });
+})();
+</script>
+</body>
+</html>
